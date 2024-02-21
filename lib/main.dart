@@ -1,4 +1,5 @@
 import 'package:client_side/controller/login_controller.dart';
+import 'package:client_side/controller/purchase_controller.dart';
 import 'package:client_side/pages/buy_page.dart';
 import 'package:client_side/pages/home_page.dart';
 import 'package:client_side/pages/login_page.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
   ///=============================
   Get.put(LoginController());
   Get.put(HomePageController());
+  Get.put(PurchaseController());
   runApp(const MyApp());
 }
 
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:HomePage(),// LoginPage(),
+      home: const LoginPage(),
     );
   }
 }

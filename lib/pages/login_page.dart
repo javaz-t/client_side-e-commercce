@@ -1,6 +1,5 @@
 import 'package:client_side/controller/login_controller.dart';
-import 'package:client_side/pages/home_page.dart';
-import 'package:client_side/pages/registration_page.dart';
+ import 'package:client_side/pages/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,11 +29,11 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20,),
-              ElevatedButton(onPressed: (){ ctrl.LoginWithPhone(); ctrl.update();}, child: Text('Login Page')),
+              ElevatedButton(onPressed: (){ ctrl.LoginWithPhone(); ctrl.update();}, child: const Text('Login Page')),
               SizedBox(height: 20,),
               TextButton(onPressed: (){
                 Get.to(()=>RegistrationPage());
-              }, child: Text('New User ?'))
+              }, child: const Text('New User ?'))
             ],
           ),
         ),

@@ -32,3 +32,32 @@ class User {
     id:json['id'],
   );
 }
+
+/// for submit demo
+class SubmitUser {
+  final String number;
+  final String name;
+
+
+  SubmitUser ({
+    required this.name,
+    required this.number,
+  });
+
+  // Convert a Product to JSON
+  Map<String, dynamic> toJson() => {
+
+    'productNam': name,
+    'price': number,
+
+  };
+
+  // Create a Product from JSON
+  factory SubmitUser.fromJson(Map<String, dynamic> json) => SubmitUser(
+
+    name: json['productNam'],
+    number: json['price'],
+
+  );
+}
+

@@ -1,5 +1,7 @@
 import 'package:client_side/controller/home_page_controller.dart';
+import 'package:client_side/pages/buy_page.dart';
 import 'package:client_side/pages/login_page.dart';
+import 'package:client_side/pages/test_page.dart';
 import 'package:client_side/widgets/droup_down.dart';
 import 'package:client_side/widgets/select_droup.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../model/product/product_model.dart';
 import '../widgets/card.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,9 +17,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String url =
-        'https://www.shoevariety.com/cdn/shop/products/71nx3HmXMtL._AC_UL1500_grande.jpg?v=1607459007';
-    return GetBuilder<HomePageController>(builder: (ctrl) {
+      return GetBuilder<HomePageController>(builder: (ctrl) {
       return RefreshIndicator(
         onRefresh: () async {
           ctrl.fetchProducts();
@@ -93,12 +94,17 @@ class HomePage extends StatelessWidget {
                             mainAxisSpacing:
                                 8), // SliverGridDelegateWithFixedCrossAxisCount
                     itemBuilder: (context, index) {
-                      return ProductDetails(
-                        name: ctrl.productsShowInUI[index].name,
-                        offer: '20%',
-                        onTab: () {},
-                        price: ctrl.productsShowInUI[index].price.toString(),
-                        url: ctrl.productsShowInUI[index].imageUrl,
+                      return InkWell(
+                        onTap: (){
+                          Get.to(()=>BuyPage() ,arguments: {'data':ctrl.productsShowInUI[index]});
+                        },
+                        child: ProductDetails(
+                          name: ctrl.productsShowInUI[index].name,
+                          offer: '20%',
+
+                          price: ctrl.productsShowInUI[index].price.toString(),
+                          url: ctrl.productsShowInUI[index].imageUrl??"",
+                        ),
                       ); // Container
                     },
                   ), // GridView.builder

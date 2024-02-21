@@ -18,16 +18,21 @@ bool otpVisible =false;
 String? enteredOtp;
 String? orgOtp;
 GetStorage box = GetStorage();
+User? loginUser;
 
-@override
+  @override
   void onReady() {
-    // TODO: implement onReady
-  Map<String,dynamic>? user = box.read('loginUser');
-  if(user !=null){
-    Get.to(const HomePage());
-  }
+    try {
+      Map<String, dynamic>? user = box.read('loginUser');
+      if (user != null) {
+        Get.to(const HomePage());
+      }
+    } catch (e) {
+      print('Error in onReady: $e');
+    }
     super.onReady();
   }
+
   @override
   void onInit() {
     Get.put(RegistrationPage());
@@ -48,7 +53,7 @@ GetStorage box = GetStorage();
           return;
         }
        if(orgOtp==enteredOtp){
-         DocumentReference doc = userCollection
+           DocumentReference doc = userCollection
              .doc(); //doc() is a method that generates a new, auto-generated ID in this collection. DocumentReference doc = productCollection.doc(); creates a new document reference with an auto-generated ID in the productCollection collection, and assigns this reference to doc
          User user = User(
            name: nameCtrl.text, number: numberCtrl.text, id: doc.id,);
@@ -83,10 +88,10 @@ GetStorage box = GetStorage();
      print(otp);
      update();
      if(otp!=null){
-       Get.snackbar('Sucess', 'Otp sent sucessfully ');
+       Get.snackbar('Sucess','Otp sent sucessfully ');
        otpVisible=true;
      }else{
-       Get.snackbar('Error', 'Otp not send ');
+       Get.snackbar('Error','Otp not send ');
      }
    }catch(e){
      print(e);
@@ -109,6 +114,7 @@ GetStorage box = GetStorage();
       } else {
         Get.snackbar('Error', 'User not fount , please register');
       }
+
     }
   }
 
